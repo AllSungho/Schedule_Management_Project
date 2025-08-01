@@ -14,7 +14,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public UserJoinResponseDto userJoin(
             @RequestBody UserJoinRequestDto userJoinRequestDto
     ) {
