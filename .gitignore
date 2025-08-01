@@ -36,4 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
+### 디비 암호 ###
 !**/src/main/resources
