@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 데이터베이스 ###
+src/main/resources/application.yml
