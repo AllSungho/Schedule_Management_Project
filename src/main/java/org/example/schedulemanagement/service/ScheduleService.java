@@ -3,6 +3,7 @@ package org.example.schedulemanagement.service;
 import lombok.RequiredArgsConstructor;
 import org.example.schedulemanagement.entity.Schedule;
 import org.example.schedulemanagement.repository.ScheduleRepository;
+import org.example.schedulemanagement.scheduledto.FindScheduleResponseDto;
 import org.example.schedulemanagement.scheduledto.FindSchedulesResponseDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateRequestDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
@@ -28,9 +29,18 @@ public class ScheduleService {
     @Transactional(readOnly = true)
     public List<FindSchedulesResponseDto> findSchedules(Long userId) {
 
-        List<Schedule> schedules = scheduleRepository.findByUserId(userId);
+        List<Schedule> schedules = this.scheduleRepository.findByUserId(userId);
         return schedules.stream()
                 .map(schedule -> new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt()))
                 .toList();
+    }
+    @Transactional(readOnly = true)
+    public FindScheduleResponseDto findSchedule(Long userId, Long scheduleId) {
+
+        List<Schedule> schedules = this.scheduleRepository.findByUserId(userId);
+        Schedule schedule = schedules.stream().filter(schedule1 -> schedule1.getId().equals(scheduleId)).findFirst().orElseThrow(
+                () -> new IllegalArgumentException("일정 아이디가 존재하지 않습니다.")
+        );
+        return new FindScheduleResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt());
     }
 }
