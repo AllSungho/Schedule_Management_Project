@@ -1,11 +1,9 @@
-package org.example.schedulemanagement.dto;
+package org.example.schedulemanagement.userdto;
 
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Getter
-public class UserFindUserRequestDto {
+public class UpdateUserEmailRequestDto {
 
     private String name;
     private String email;

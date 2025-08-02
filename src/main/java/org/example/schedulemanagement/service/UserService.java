@@ -1,7 +1,7 @@
 package org.example.schedulemanagement.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedulemanagement.dto.*;
+import org.example.schedulemanagement.userdto.*;
 import org.example.schedulemanagement.entity.User;
 import org.example.schedulemanagement.repository.UserRepository;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
-package org.example.schedulemanagement.dto;
+package org.example.schedulemanagement.userdto;
 
 import lombok.Getter;
 
 @Getter
-public class UpdateUserPasswordRequestDto {
+public class UpdateUserNameRequestDto {
 
     private String name;
     private String email;

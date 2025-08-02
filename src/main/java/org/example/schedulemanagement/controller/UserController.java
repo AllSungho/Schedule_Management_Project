@@ -1,7 +1,7 @@
 package org.example.schedulemanagement.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedulemanagement.dto.*;
+import org.example.schedulemanagement.userdto.*;
 import org.example.schedulemanagement.service.UserService;
 import org.springframework.web.bind.annotation.*;
 

@@ -17,6 +17,7 @@ public class Schedule extends BaseEntity {
     private String title;
     private String content;
     private Long userId;
+    // 작성자명과 비밀번호는 유저 엔티티에 존재
 
     public Schedule(String title, String content, Long userId) {
 

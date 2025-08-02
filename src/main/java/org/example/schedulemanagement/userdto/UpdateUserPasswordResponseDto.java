@@ -1,18 +1,18 @@
-package org.example.schedulemanagement.dto;
+package org.example.schedulemanagement.userdto;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class UpdateUserEmailResponseDto {
+public class UpdateUserPasswordResponseDto {
 
     private final String name;
     private final String email;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
-    public UpdateUserEmailResponseDto(String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public UpdateUserPasswordResponseDto(String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
 
         this.name = name;
         this.email = email;
