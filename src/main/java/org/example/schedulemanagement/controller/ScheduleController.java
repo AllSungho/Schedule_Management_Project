@@ -56,4 +56,13 @@ public class ScheduleController {
 
         return this.scheduleService.updateScheduleContent(userId, scheduleId, updateScheduleContentRequestDto);
     }
+
+    @DeleteMapping("/users/{userId}/schedules/{scheduleId}")
+    public void deleteSchedule(
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId
+    ) {
+
+        this.scheduleService.deleteSchedule(userId, scheduleId);
+    }
 }

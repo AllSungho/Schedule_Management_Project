@@ -61,4 +61,13 @@ public class ScheduleService {
         schedule.updateContent(updateScheduleContentRequestDto.getContent());
         return new UpdateScheduleContentResponseDto(schedule, schedule.getModifiedAt(), schedule.getModifiedAt());
     }
+
+    @Transactional
+    public void deleteSchedule(Long userId, Long scheduleId) {
+        List<Schedule> schedules = this.scheduleRepository.findByUserId(userId);
+        schedules.stream().filter(schedule1 -> schedule1.getId().equals(scheduleId)).findFirst().orElseThrow(
+                () -> new IllegalArgumentException("일정 아이디가 존재하지 않습니다.")
+        );
+        scheduleRepository.deleteById(scheduleId);
+    }
 }
