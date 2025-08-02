@@ -11,6 +11,7 @@ public class ScheduleCreateResponseDto {
     private final Long id;
     private final String title;
     private final String content;
+    private final Long userId;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
@@ -19,6 +20,7 @@ public class ScheduleCreateResponseDto {
         this.id = schedule.getId();
         this.title = schedule.getTitle();
         this.content = schedule.getContent();
+        this.userId = schedule.getUserId();
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

@@ -7,13 +7,15 @@ import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
 import org.example.schedulemanagement.service.ScheduleService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
-    @PostMapping("/users/{userId}/Schedules")
+    @PostMapping("/users/{userId}/schedules")
     public ScheduleCreateResponseDto createSchedule(
             @PathVariable Long userId,
             @RequestBody ScheduleCreateRequestDto scheduleCreateRequestDto
@@ -22,8 +24,8 @@ public class ScheduleController {
         return this.scheduleService.createSchedule(userId, scheduleCreateRequestDto);
     }
 
-    @GetMapping("/users/{userId}/Schedules")
-    public FindSchedulesResponseDto findSchedules(
+    @GetMapping("/users/{userId}/schedules")
+    public List<FindSchedulesResponseDto> findSchedules(
             @PathVariable Long userId
     ) {
 

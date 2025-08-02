@@ -16,6 +16,7 @@ public class FindSchedulesResponseDto {
     private final LocalDateTime updateAt;
 
     public FindSchedulesResponseDto(Schedule schedule, LocalDateTime createAt, LocalDateTime updateAt) {
+
         this.id = schedule.getId();
         this.title = schedule.getTitle();
         this.content = schedule.getContent();

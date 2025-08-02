@@ -9,6 +9,9 @@ import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
@@ -23,11 +26,11 @@ public class ScheduleService {
     }
 
     @Transactional(readOnly = true)
-    public FindSchedulesResponseDto findSchedules(Long userId) {
+    public List<FindSchedulesResponseDto> findSchedules(Long userId) {
 
-        Schedule schedule = scheduleRepository.findById(userId).orElseThrow(
-                () -> new IllegalArgumentException("그런 아이디 없습니다.")
-        );
-        return new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt());
+        List<Schedule> schedules = scheduleRepository.findByUserId(userId);
+        return schedules.stream()
+                .map(schedule -> new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt()))
+                .toList();
     }
 }
