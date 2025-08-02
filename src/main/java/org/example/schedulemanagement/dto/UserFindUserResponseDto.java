@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Getter
 public class UserFindUserResponseDto {
+
     private final String name;
     private final String email;
     private final LocalDateTime createdAt;

@@ -6,9 +6,8 @@ import java.time.LocalDateTime;
 
 @Getter
 public class UserJoinRequestDto {
+
     private String name;
     private String email;
     private String password;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

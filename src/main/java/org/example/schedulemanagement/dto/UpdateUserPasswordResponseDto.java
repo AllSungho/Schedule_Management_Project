@@ -13,6 +13,7 @@ public class UpdateUserPasswordResponseDto {
     private final LocalDateTime updatedAt;
 
     public UpdateUserPasswordResponseDto(String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;

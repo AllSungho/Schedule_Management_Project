@@ -17,6 +17,7 @@ public class UserService {
 
     @Transactional
     public UserJoinResponseDto userJoin(UserJoinRequestDto userJoinRequestDto) {
+
         User user = userRepository.save(
                 new User(
                         userJoinRequestDto.getName(),
@@ -24,7 +25,6 @@ public class UserService {
                         userJoinRequestDto.getPassword()
                 )
         );
-        System.out.println("User = " + user.getId());
         return new UserJoinResponseDto(
                 user.getName(),
                 user.getEmail(),
@@ -34,40 +34,53 @@ public class UserService {
     }
     @Transactional(readOnly = true)
     public List<UserFindUsersResponseDto> findUsers() {
+
         List<User> users = userRepository.findAll();
         return users.stream()
                 .map(user -> new UserFindUsersResponseDto(user.getName(), user.getEmail(), user.getCreatedAt(), user.getModifiedAt()))
                         .toList();
     }
     @Transactional(readOnly = true)
-    public UserFindUserResponseDto findUserByEmail(Long id) {
+    public UserFindUserResponseDto findUser(Long id) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
         );
         return new UserFindUserResponseDto(user.getName(), user.getEmail(), user.getCreatedAt(), user.getModifiedAt());
     }
     @Transactional
-    public UpdateUserNameResponseDto updateUserName(Long id, String name) {
+    public UpdateUserNameResponseDto updateUserName(Long id, UpdateUserNameRequestDto updateUserNameRequestDto) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
         );
-        user.changeName(name);
+        user.changeName(updateUserNameRequestDto.getName());
         return new UpdateUserNameResponseDto(user.getName(), user.getEmail(), user.getCreatedAt(), user.getModifiedAt());
     }
     @Transactional
-    public UpdateUserEmailResponseDto updateUserEmail(Long id, String email) {
+    public UpdateUserEmailResponseDto updateUserEmail(Long id, UpdateUserEmailRequestDto updateUserEmailRequestDto) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
         );
-        user.changeEmail(email);
+        user.changeEmail(updateUserEmailRequestDto.getEmail());
         return new UpdateUserEmailResponseDto(user.getName(), user.getEmail(), user.getCreatedAt(), user.getModifiedAt());
     }
     @Transactional
-    public UpdateUserPasswordResponseDto updateUserPassword(Long id, String password) {
+    public UpdateUserPasswordResponseDto updateUserPassword(Long id, UpdateUserPasswordRequestDto updateUserPasswordRequestDto) {
+
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
         );
-        user.changePassword(password);
+        user.changePassword(updateUserPasswordRequestDto.getPassword());
         return new UpdateUserPasswordResponseDto(user.getName(), user.getEmail(), user.getCreatedAt(), user.getModifiedAt());
+    }
+    @Transactional
+    public void deleteUser(Long id) {
+
+        userRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
+        );
+        userRepository.deleteById(id);
     }
 }

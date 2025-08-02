@@ -13,6 +13,7 @@ public class UpdateUserNameResponseDto {
     private final LocalDateTime updatedAt;
 
     public UpdateUserNameResponseDto(String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+
         this.name = name;
         this.email = email;
         this.createdAt = createdAt;
