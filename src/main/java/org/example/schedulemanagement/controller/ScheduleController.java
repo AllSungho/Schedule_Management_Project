@@ -1,6 +1,7 @@
 package org.example.schedulemanagement.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.schedulemanagement.scheduledto.FindSchedulesResponseDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateRequestDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
 import org.example.schedulemanagement.service.ScheduleService;
@@ -19,5 +20,13 @@ public class ScheduleController {
     ) {
 
         return this.scheduleService.createSchedule(userId, scheduleCreateRequestDto);
+    }
+
+    @GetMapping("/users/{userId}/Schedules")
+    public FindSchedulesResponseDto findSchedules(
+            @PathVariable Long userId
+    ) {
+
+        return this.scheduleService.findSchedules(userId);
     }
 }

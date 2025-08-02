@@ -3,6 +3,7 @@ package org.example.schedulemanagement.service;
 import lombok.RequiredArgsConstructor;
 import org.example.schedulemanagement.entity.Schedule;
 import org.example.schedulemanagement.repository.ScheduleRepository;
+import org.example.schedulemanagement.scheduledto.FindSchedulesResponseDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateRequestDto;
 import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,14 @@ public class ScheduleService {
 
         Schedule schedule = this.scheduleRepository.save(new Schedule(scheduleCreateRequestDto.getTitle(), scheduleCreateRequestDto.getContent(), userId));
         return new ScheduleCreateResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt());
+    }
+
+    @Transactional(readOnly = true)
+    public FindSchedulesResponseDto findSchedules(Long userId) {
+
+        Schedule schedule = scheduleRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("그런 아이디 없습니다.")
+        );
+        return new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt());
     }
 }
