@@ -1,10 +1,7 @@
 package org.example.schedulemanagement.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedulemanagement.scheduledto.FindScheduleResponseDto;
-import org.example.schedulemanagement.scheduledto.FindSchedulesResponseDto;
-import org.example.schedulemanagement.scheduledto.ScheduleCreateRequestDto;
-import org.example.schedulemanagement.scheduledto.ScheduleCreateResponseDto;
+import org.example.schedulemanagement.scheduledto.*;
 import org.example.schedulemanagement.service.ScheduleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,5 +36,24 @@ public class ScheduleController {
     ) {
 
         return this.scheduleService.findSchedule(userId, scheduleId);
+    }
+
+    @PatchMapping("/users/{userId}/schedules/{scheduleId}/titles")
+    public UpdateScheduleTitleResponseDto updateScheduleTitle(
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId,
+            @RequestBody UpdateScheduleTitleRequestDto updateScheduleTitleRequestDto
+    ) {
+
+        return this.scheduleService.updateScheduleTitle(userId, scheduleId, updateScheduleTitleRequestDto);
+    }
+    @PatchMapping("/users/{userId}/schedules/{scheduleId}/contents")
+    public UpdateScheduleContentResponseDto updateScheduleContent(
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId,
+            @RequestBody UpdateScheduleContentRequestDto updateScheduleContentRequestDto
+    ) {
+
+        return this.scheduleService.updateScheduleContent(userId, scheduleId, updateScheduleContentRequestDto);
     }
 }

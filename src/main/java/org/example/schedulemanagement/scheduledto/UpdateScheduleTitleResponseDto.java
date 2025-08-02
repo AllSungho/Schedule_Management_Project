@@ -1,0 +1,27 @@
+package org.example.schedulemanagement.scheduledto;
+
+import lombok.Getter;
+import org.example.schedulemanagement.entity.Schedule;
+
+import java.time.LocalDateTime;
+
+@Getter
+public class UpdateScheduleTitleResponseDto {
+
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final Long userId;
+    private final LocalDateTime createTime;
+    private final LocalDateTime updateTime;
+
+    public UpdateScheduleTitleResponseDto(Schedule schedule, LocalDateTime createTime, LocalDateTime updateTime) {
+
+        this.id = schedule.getId();
+        this.title = schedule.getTitle();
+        this.content = schedule.getContent();
+        this.userId = schedule.getUserId();
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+}
