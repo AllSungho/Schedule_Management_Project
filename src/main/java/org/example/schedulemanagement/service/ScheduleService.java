@@ -18,20 +18,20 @@ public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
 
     @Transactional
-    public ScheduleCreateResponseDto createSchedule(
+    public CreateScheduleResponseDto createSchedule(
             Long userId,
-            ScheduleCreateRequestDto scheduleCreateRequestDto
+            CreateScheduleRequestDto createScheduleRequestDto
     ) {
 
         Schedule schedule = this.scheduleRepository.save(
                 new Schedule(
-                        scheduleCreateRequestDto.getTitle(),
-                        scheduleCreateRequestDto.getContent(),
+                        createScheduleRequestDto.getTitle(),
+                        createScheduleRequestDto.getContent(),
                         userId
                 )
         );
 
-        return new ScheduleCreateResponseDto(
+        return new CreateScheduleResponseDto(
                 schedule,
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()

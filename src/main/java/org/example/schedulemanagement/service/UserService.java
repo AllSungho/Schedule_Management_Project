@@ -16,17 +16,17 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public UserJoinResponseDto userJoin(UserJoinRequestDto userJoinRequestDto) {
+    public JoinUserResponseDto userJoin(JoinUserRequestDto joinUserRequestDto) {
 
         User user = userRepository.save(
                 new User(
-                        userJoinRequestDto.getName(),
-                        userJoinRequestDto.getEmail(),
-                        userJoinRequestDto.getPassword()
+                        joinUserRequestDto.getName(),
+                        joinUserRequestDto.getEmail(),
+                        joinUserRequestDto.getPassword()
                 )
         );
 
-        return new UserJoinResponseDto(
+        return new JoinUserResponseDto(
                 user.getId(),
                 user.getName(),
                 user.getEmail(),
@@ -35,12 +35,12 @@ public class UserService {
         );
     }
     @Transactional(readOnly = true)
-    public List<UserFindUsersResponseDto> findUsers() {
+    public List<FindUsersResponseDto> findUsers() {
 
         List<User> users = userRepository.findAll();
 
         return users.stream()
-                .map(user -> new UserFindUsersResponseDto(
+                .map(user -> new FindUsersResponseDto(
                         user.getId(),
                         user.getName(),
                         user.getEmail(),
@@ -49,13 +49,13 @@ public class UserService {
                 .toList();
     }
     @Transactional(readOnly = true)
-    public UserFindUserResponseDto findUser(Long id) {
+    public FindUserResponseDto findUser(Long id) {
 
         User user = userRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 아이디입니다.")
         );
 
-        return new UserFindUserResponseDto(
+        return new FindUserResponseDto(
                 user.getId(),
                 user.getName(),
                 user.getEmail(),

@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class UserFindUsersResponseDto {
+public class JoinUserResponseDto {
 
     private final Long id;
     private final String name;
@@ -13,7 +13,7 @@ public class UserFindUsersResponseDto {
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
-    public UserFindUsersResponseDto(Long id, String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public JoinUserResponseDto(Long id, String name, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
 
         this.id = id;
         this.name = name;

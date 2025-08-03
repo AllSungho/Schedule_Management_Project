@@ -6,7 +6,7 @@ import org.example.schedulemanagement.entity.Schedule;
 import java.time.LocalDateTime;
 
 @Getter
-public class ScheduleCreateResponseDto {
+public class CreateScheduleResponseDto {
 
     private final Long id;
     private final String title;
@@ -15,7 +15,7 @@ public class ScheduleCreateResponseDto {
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
-    public ScheduleCreateResponseDto(Schedule schedule, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public CreateScheduleResponseDto(Schedule schedule, LocalDateTime createdAt, LocalDateTime updatedAt) {
 
         this.id = schedule.getId();
         this.title = schedule.getTitle();

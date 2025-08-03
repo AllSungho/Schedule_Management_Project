@@ -14,20 +14,20 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users")
-    public UserJoinResponseDto userJoin(
-            @RequestBody UserJoinRequestDto userJoinRequestDto
+    public JoinUserResponseDto userJoin(
+            @RequestBody JoinUserRequestDto joinUserRequestDto
     ) {
 
-        return this.userService.userJoin(userJoinRequestDto);
+        return this.userService.userJoin(joinUserRequestDto);
     }
 
     @GetMapping("/users")
-    public List<UserFindUsersResponseDto> findUsers() {
+    public List<FindUsersResponseDto> findUsers() {
 
         return this.userService.findUsers();
     }
     @GetMapping("/users/{userId}")
-    public UserFindUserResponseDto findUser(
+    public FindUserResponseDto findUser(
             @PathVariable Long userId
     ) {
 
