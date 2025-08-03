@@ -51,7 +51,11 @@ public class ScheduleController {
             @RequestBody UpdateScheduleTitleRequestDto updateScheduleTitleRequestDto
     ) {
 
-        return this.scheduleService.updateScheduleTitle(userId, scheduleId, updateScheduleTitleRequestDto);
+        return this.scheduleService.updateScheduleTitle(
+                userId,
+                scheduleId,
+                updateScheduleTitleRequestDto
+        );
     }
     @PatchMapping("/users/{userId}/schedules/{scheduleId}/contents")
     public UpdateScheduleContentResponseDto updateScheduleContent(
@@ -60,7 +64,11 @@ public class ScheduleController {
             @RequestBody UpdateScheduleContentRequestDto updateScheduleContentRequestDto
     ) {
 
-        return this.scheduleService.updateScheduleContent(userId, scheduleId, updateScheduleContentRequestDto);
+        return this.scheduleService.updateScheduleContent(
+                userId,
+                scheduleId,
+                updateScheduleContentRequestDto
+        );
     }
 
     @DeleteMapping("/users/{userId}/schedules/{scheduleId}")
