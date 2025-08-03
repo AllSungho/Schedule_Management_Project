@@ -1,6 +1,7 @@
 package org.example.schedulemanagement.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.schedulemanagement.entity.Schedule;
 import org.example.schedulemanagement.repository.ScheduleRepository;
 import org.example.schedulemanagement.scheduledto.*;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
@@ -26,7 +27,15 @@ public class ScheduleService {
     @Transactional(readOnly = true)
     public List<FindSchedulesResponseDto> findSchedules(Long userId) {
 
-        List<Schedule> schedules = this.scheduleRepository.findByUserId(userId);
+        List<Schedule> schedules = this.scheduleRepository.findByUserIdOrderByModifiedAtDesc(userId);
+        return schedules.stream()
+                .map(schedule -> new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt()))
+                .toList();
+    }
+    @Transactional(readOnly = true)
+    public List<FindSchedulesResponseDto> findSchedules(String title) {
+
+        List<Schedule> schedules = this.scheduleRepository.findByTitleOrderByModifiedAtDesc(title);
         return schedules.stream()
                 .map(schedule -> new FindSchedulesResponseDto(schedule, schedule.getCreatedAt(), schedule.getModifiedAt()))
                 .toList();

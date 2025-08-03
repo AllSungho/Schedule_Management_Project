@@ -24,10 +24,16 @@ public class ScheduleController {
 
     @GetMapping("/users/{userId}/schedules")
     public List<FindSchedulesResponseDto> findSchedules(
-            @PathVariable Long userId
+            @PathVariable Long userId,
+            @RequestParam(name = "title", required = false) String title
     ) {
 
-        return this.scheduleService.findSchedules(userId);
+        if (title == null) {
+            return this.scheduleService.findSchedules(userId);
+        }
+        else {
+            return this.scheduleService.findSchedules(title);
+        }
     }
     @GetMapping("/users/{userId}/schedules/{scheduleId}")
     public FindScheduleResponseDto findSchedule(

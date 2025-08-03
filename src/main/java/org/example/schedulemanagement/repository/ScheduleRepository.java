@@ -8,4 +8,6 @@ import java.util.List;
 public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
     public List<Schedule> findByUserId(Long userId);
+    public List<Schedule> findByUserIdOrderByModifiedAtDesc(Long userId);
+    public List<Schedule> findByTitleOrderByModifiedAtDesc(String title);
 }
